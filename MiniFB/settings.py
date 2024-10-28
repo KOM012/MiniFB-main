@@ -135,3 +135,5 @@ JAZZMIN_SETTINGS = {
 }
 
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
+
+LOGIN_REDIRECT_IRL = 'bl-home'
