@@ -1,0 +1,121 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Youtube Clone</title>
+    <link rel="icon" href="{% static 'ytlogo.png' %}" type="image/x-icon" />
+    <link href="{% static 'fbclone/style.css' %}" rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.4.0/fonts/remixicon.css" rel="stylesheet" />
+    <style>
+        .custom-btn-red {
+            color: red !important;
+            border-color: red !important;
+        }
+        .custom-btn-red:hover {
+            background-color: red !important;
+            color: white !important;
+        }
+     
+        .btn-outline-info,
+        .btn-outline-primary,
+        .btn-primary,
+        .btn-link,  /* Added btn-link */
+        .btn-link i {  /* Added for the icon */
+            color: red !important;
+            border-color: red !important;
+            background-color: transparent !important;
+        }
+     
+        .btn-outline-info:hover,
+        .btn-outline-primary:hover,
+        .btn-primary:hover,
+        .btn-link:hover,  /* Added hover for btn-link */
+        .btn-link:hover i {  /* Added hover for icon */
+            background-color: red !important;
+            color: white !important;
+        }
+     
+        /* Special style for btn-primary to make it filled by default */
+        .btn-primary {
+            background-color: red !important;
+            color: white !important;
+        }
+     
+        /* Remove default button styles for btn-link */
+        .btn-link {
+            text-decoration: none !important;
+            border: none !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <!-- Brand -->
+            <a href="{% url 'bl-home' %}" class="navbar-brand d-inline-flex align-items-center text-decoration-none">
+                <img src="{% static 'ytlogo.png' %}" alt="YT Clone Logo" width="40" height="42" />
+                <span class="text-blue ml-2">Your Tube</span>
+            </a>
+
+            <!-- Mobile Toggle Button -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Collapsible Content -->
+            {% if user.is_authenticated %}
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <!-- Search Bar -->
+                <form class="form-inline mx-2">
+                    <input class="form-control" type="search" placeholder="Search" aria-label="Search" />
+                </form>
+
+                <!-- Navigation Links -->
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a href="{% url 'bl-home' %}" class="nav-link">
+                            <i class="ri-home-7-line" style="font-size: 1.8rem"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'bl-video' %}" class="nav-link">
+                            <i class="ri-movie-line" style="font-size: 1.8rem"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'bl-groups' %}" class="nav-link">
+                            <i class="ri-group-2-line" style="font-size: 1.8rem"></i>
+                        </a>
+                    </li>
+                </ul>
+                {% endif %}
+              
+                <!-- Auth Buttons -->
+                <div class="d-flex ml-auto">
+                    {% if user.is_authenticated %}
+                        <!-- Show "Logout" button if user is logged in -->
+                            <a class="btn btn-outline-danger mr-2" href="{% url 'logout' %}"  style="color: grey; border-color: grey; &:hover { background-color: grey; color: white; }">Logout</a>
+                            <a class="btn btn-outline-primary me-2" href="{% url 'profile' %}" style="color: red; border-color: red; &:hover { background-color: red; color: white; }">Profile</a>
+                    {% else %}
+                        <!-- Show "Login" and "Sign-up" buttons if user is not logged in -->
+                  
+                    {% endif %}
+                </div>
+            </div> <!-- End of navbar-collapse -->
+        </div> <!-- End of container -->
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    {% block content %}{% endblock %}
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>
