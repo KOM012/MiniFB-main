@@ -21,12 +21,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-elzr)+_ust&it#o(q0l0zgog_-^qh7$gh_-dlvf0ja9_))v67j'
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DEBUG", "False"). lower () == "true"
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
 
 
 # Application definition
@@ -90,7 +90,8 @@ DATABASES = {
         'PORT': '3306',
     }
 }
-DATABASES["default"] = dj_database_url.parse("postgresql://yourtube_user:dPrhEePiiZKz6jAomGHHyON4r6fMTvmS@dpg-csmqttogph6c73foi8t0-a.oregon-postgres.render.com/yourtube")
+dataBase_Url = os.environ.get("DATABASE_URL")
+DATABASES["default"] = dj_database_url.parse("dataBase_Url")
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
