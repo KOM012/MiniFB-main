@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-
+import dj_database_url
 from pathlib import Path
 import os
 
@@ -90,7 +90,7 @@ DATABASES = {
         'PORT': '3306',
     }
 }
-
+DATABASES["default"] = dj_database_url.parse("postgresql://yourtube_user:dPrhEePiiZKz6jAomGHHyON4r6fMTvmS@dpg-csmqttogph6c73foi8t0-a.oregon-postgres.render.com/yourtube")
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
